@@ -1,0 +1,47 @@
+{
+  "name": "boiled",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "Reaper <ahoy@barelyhuman.dev>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npx nodemon .",
+    "start": "node .",
+    "test": "npx ava",
+    "migrate:latest": "npx knex migrate:latest",
+    "migrate:rollback": "npx knex migrate:rollback",
+    "fix": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@polka/send-type": "^0.5.2",
+    "dotenv": "^10.0.0",
+    "knex": "^0.95.14",
+    "pg": "^8.7.1",
+    "polka": "^0.5.2"
+  },
+  "devDependencies": {
+    "ava": "^3.15.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
+    "printWidth": 100,
+    "proseWrap": "always",
+    "quoteProps": "as-needed",
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  }
+}

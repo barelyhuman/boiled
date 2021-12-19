@@ -1,0 +1,35 @@
+version: '3.0'
+services:
+  db:
+    image: postgres:12.4-alpine
+    # TODO: change based on your project's name
+    container_name: postgres-database
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+
+    env_file:
+      - .env
+    volumes:
+      - postgresdb:/var/lib/postgresql/data
+  api:
+    build: .
+    # TODO: change based on your project's name
+    container_name: api-server
+    environment:
+      DB_HOST: db
+    env_file:
+      - .env
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    links:
+      - db
+
+volumes:
+  postgresdb:
